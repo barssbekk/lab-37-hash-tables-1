@@ -3,15 +3,19 @@
 #include <string>
 using namespace std;
 
-int sum_ascii(string input);
+int sum_ascii(const string& input);
 
 int main() {
-
+    cout << sum_ascii("ABC");
 }
 
-int sum_ascii(string text) {
+int sum_ascii(const string& text) {
     int total{};
 
+    for (char each : text)
+        total += (int)each;
+
+    return total;
 }
 /*
 These targets are present in the dataset and can be used for testing:
