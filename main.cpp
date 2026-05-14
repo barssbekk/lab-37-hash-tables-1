@@ -8,7 +8,8 @@
 using namespace std;
 
 const int BUCKET_RANGE{500};
-// int sum_ascii(const string& text);
+
+int get_hash_index(const string& text);
 
 int main() {
     ifstream fileInput{"lab-37-data-3.txt"};
@@ -17,11 +18,14 @@ int main() {
         return 1;
     }
 
-    string inputCode{};
-    long long bigTotal{};
-    // while (fileInput >> inputCode)
-    //     bigTotal += sum_ascii(inputCode);
-    cout << bigTotal;
+    map<int, list<string>> hashTable;
+    string inputText;
+
+    while (fileInput >> inputText) {
+        int hashIndex{get_hash_index(inputText)}; // generate hash index
+        hashTable[hashIndex].push_back(inputText);
+    }
+
 
     fileInput.close();
 
@@ -38,12 +42,3 @@ int get_hash_index(const string& text) {
 
     return hashIndex;
 }
-
-// int sum_ascii(const string& text) {
-//     int total{};
-//
-//     for (char each : text)
-//         total += (int)each;
-//
-//     return total;
-// }
