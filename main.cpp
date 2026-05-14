@@ -1,12 +1,27 @@
 // COMSC-210 | Lab 37 | Barsbek
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
-int sum_ascii(const string& input);
+int sum_ascii(const string& text);
 
 int main() {
-    cout << sum_ascii("ABC");
+    ifstream fileInput{"lab-37-data-3.txt"};
+    if (!fileInput) {
+        cerr << "File not found\n";
+        return 1;
+    }
+
+    string inputCode{};
+    long long bigTotal{};
+    while (fileInput >> inputCode)
+        bigTotal += sum_ascii(inputCode);
+    cout << bigTotal;
+
+    fileInput.close();
+
+    return 0;
 }
 
 int sum_ascii(const string& text) {
