@@ -2,9 +2,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <list>
+#include <map>
+
 using namespace std;
 
-int sum_ascii(const string& text);
+const int BUCKET_RANGE{500};
+// int sum_ascii(const string& text);
 
 int main() {
     ifstream fileInput{"lab-37-data-3.txt"};
@@ -15,8 +19,8 @@ int main() {
 
     string inputCode{};
     long long bigTotal{};
-    while (fileInput >> inputCode)
-        bigTotal += sum_ascii(inputCode);
+    // while (fileInput >> inputCode)
+    //     bigTotal += sum_ascii(inputCode);
     cout << bigTotal;
 
     fileInput.close();
@@ -24,18 +28,22 @@ int main() {
     return 0;
 }
 
-int sum_ascii(const string& text) {
+int get_hash_index(const string& text) {
     int total{};
 
     for (char each : text)
         total += (int)each;
 
-    return total;
+    int hashIndex{total % BUCKET_RANGE};
+
+    return hashIndex;
 }
-/*
-These targets are present in the dataset and can be used for testing:
-536B9DFC93AF
-1DA9D64D02A0
-666D109AA22E
-E1D2665B21EA
-*/
+
+// int sum_ascii(const string& text) {
+//     int total{};
+//
+//     for (char each : text)
+//         total += (int)each;
+//
+//     return total;
+// }
