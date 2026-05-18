@@ -1,4 +1,4 @@
-// COMSC-210 | Lab 37 | Barsbek
+// COMSC-210 | Lab 38 | Barsbek
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -7,8 +7,8 @@
 
 using namespace std;
 
-const int BUCKET_RANGE{500};    // total bucket count
-const int NUM_FIRST_ENTRIES{100};
+const int BUCKET_RANGE{500};         // total bucket count
+const int NUM_FIRST_ENTRIES{100};    // first entries
 
 int get_hash_index(const string& text);
 void print_first_entries(const map<int, list<string>>& hashTable);
@@ -47,6 +47,7 @@ int main() {
     }
 
     fileInput.close();
+
     int choice{};
     do {
 
@@ -130,6 +131,8 @@ int main() {
                 break;
             }
 
+            default:
+                cout << "Invalid choice\n";
         }
 
     } while (choice != 6);
@@ -137,58 +140,7 @@ int main() {
     return 0;
 }
 
-    // print hash first 100 table
-    // print_first_entries(hashTable);
-    //
-    // // find target
-    // string target;
-    // cout << "\nEnter key to search: ";
-    // cin >> target;
-    //
-    // if (search_key(hashTable, target))
-    //     cout << "Found\n";
-    // else
-    //     cout << "Not found\n";
-    //
-    // // Add key
-    // string newKey;
-    //
-    // cout << "\nEnter key to add: ";
-    // cin >> newKey;
-    // add_key(hashTable, newKey);
-    // cout << "Key added\n";
-    //
-    // // remove key
-    // string removeTarget;
-    //
-    // cout << "\nEnter key to remove: ";
-    // cin >> removeTarget;
-    //
-    // if (remove_key(hashTable, removeTarget))
-    //     cout << "Key removed\n";
-    // else
-    //     cout << "Key not found\n";
-    //
-    // // modify key
-    // string oldKey;
-    // string updatedKey;
-    //
-    // cout << "\nEnter key to modify: ";
-    // cin >> oldKey;
-    //
-    // cout << "Enter new key: ";
-    // cin >> updatedKey;
-    //
-    // if (modify_key(hashTable, oldKey, updatedKey))
-    //     cout << "Key modified\n";
-    // else
-    //     cout << "Original key not found\n";
-
-
-//
-//     return 0;
-// }
-
+// generate hash index
 int get_hash_index(const string& text) {
     int total{};
 
@@ -200,6 +152,7 @@ int get_hash_index(const string& text) {
     return hashIndex;
 }
 
+// print first 100 entries
 void print_first_entries(const map<int, list<string>>& hashTable) {
     int counter{};
 
@@ -215,6 +168,7 @@ void print_first_entries(const map<int, list<string>>& hashTable) {
     }
 }
 
+// search for key
 bool search_key(const map<int, list<string>>& hashTable,
                 const string& target) {
     int hashIndex{get_hash_index(target)};
@@ -229,6 +183,7 @@ bool search_key(const map<int, list<string>>& hashTable,
     return false;
 }
 
+// add new key
 void add_key(map<int, list<string>>& hashTable,
              const string& newKey) {
 
@@ -237,6 +192,7 @@ void add_key(map<int, list<string>>& hashTable,
     hashTable[hashIndex].push_back(newKey);
 }
 
+// remove key
 bool remove_key(map<int, list<string>>& hashTable,
                 const string& target) {
 
@@ -255,6 +211,7 @@ bool remove_key(map<int, list<string>>& hashTable,
     return true;
 }
 
+// modify existing key
 bool modify_key(map<int, list<string>>& hashTable,
                 const string& oldKey,
                 const string& newKey) {
