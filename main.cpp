@@ -71,6 +71,8 @@ int main() {
 
     if (remove_key(hashTable, removeTarget))
         cout << "Key removed\n";
+    else
+        cout << "Key not found\n";
 
     fileInput.close();
 
@@ -129,6 +131,13 @@ bool remove_key(map<int, list<string>>& hashTable,
                 const string& target) {
 
     int hashIndex{get_hash_index(target)};
+
+    // bucket doesnt exist
+    if (hashTable.count(hashIndex) == 0)
+        return false;
+
+    if (!search_key(hashTable, target))
+        return false;
 
     // remove target from list
     hashTable[hashIndex].remove(target);
