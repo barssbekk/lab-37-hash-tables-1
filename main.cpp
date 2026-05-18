@@ -12,6 +12,8 @@ const int NUM_FIRST_ENTRIES{100};
 
 int get_hash_index(const string& text);
 void print_first_entries(const map<int, list<string>>& hashTable);
+bool search_key(const map<int, list<string>>& hashTable,
+                const string& target);
 
 int main() {
     // open dataset file
@@ -35,6 +37,11 @@ int main() {
 
     // print hash first 100 table
     print_first_entries(hashTable);
+
+    // find target
+    string target;
+    cout << "\nEnter key to search: ";
+    getline(cin, target);
 
     fileInput.close();
 
@@ -65,4 +72,10 @@ void print_first_entries(const map<int, list<string>>& hashTable) {
         if (counter >= NUM_FIRST_ENTRIES)
             break;
     }
+}
+
+bool search_key(const map<int, list<string>>& hashTable,
+                const string& target) {
+
+    return true;
 }
