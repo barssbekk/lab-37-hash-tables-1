@@ -46,57 +46,148 @@ int main() {
         hashTable[hashIndex].push_back(inputText);
     }
 
-    // print hash first 100 table
-    print_first_entries(hashTable);
-
-    // find target
-    string target;
-    cout << "\nEnter key to search: ";
-    cin >> target;
-
-    if (search_key(hashTable, target))
-        cout << "Found\n";
-    else
-        cout << "Not found\n";
-
-    // Add key
-    string newKey;
-
-    cout << "\nEnter key to add: ";
-    cin >> newKey;
-    add_key(hashTable, newKey);
-    cout << "Key added\n";
-
-    // remove key
-    string removeTarget;
-
-    cout << "\nEnter key to remove: ";
-    cin >> removeTarget;
-
-    if (remove_key(hashTable, removeTarget))
-        cout << "Key removed\n";
-    else
-        cout << "Key not found\n";
-
-    // modify key
-    string oldKey;
-    string updatedKey;
-
-    cout << "\nEnter key to modify: ";
-    cin >> oldKey;
-
-    cout << "Enter new key: ";
-    cin >> updatedKey;
-
-    if (modify_key(hashTable, oldKey, updatedKey))
-        cout << "Key modified\n";
-    else
-        cout << "Original key not found\n";
-
     fileInput.close();
+    int choice{};
+    do {
+
+        cout << "\n---MENU---\n";
+        cout << "1. Print first 100 entries\n";
+        cout << "2. Search key\n";
+        cout << "3. Add key\n";
+        cout << "4. Remove key\n";
+        cout << "5. Modify key\n";
+        cout << "6. Exit\n";
+
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            // print
+            case 1: {
+                print_first_entries(hashTable);
+                break;
+            }
+
+            // search
+            case 2: {
+                string target;
+                cout << "\nEnter key to search: ";
+                cin >> target;
+                if (search_key(hashTable, target))
+                    cout << "Found\n";
+                else
+                    cout << "Not found\n";
+                break;
+            }
+
+            // add
+            case 3: {
+                string newKey;
+                cout << "\nEnter key to add: ";
+                cin >> newKey;
+
+                add_key(hashTable, newKey);
+                cout << "Key added\n";
+                break;
+            }
+
+            // remove
+            case 4: {
+                string removeTarget;
+
+                cout << "\nEnter key to remove: ";
+                cin >> removeTarget;
+
+                if (remove_key(hashTable, removeTarget))
+                    cout << "Key removed\n";
+                else
+                    cout << "Key not found\n";
+
+                break;
+            }
+
+            // modify
+            case 5: {
+                string oldKey;
+                string updatedKey;
+
+                cout << "\nEnter key to modify: ";
+                cin >> oldKey;
+
+                cout << "Enter new key: ";
+                cin >> updatedKey;
+
+                if (modify_key(hashTable, oldKey, updatedKey))
+                    cout << "Key modified\n";
+                else
+                    cout << "Original key not found\n";
+                break;
+            }
+
+            // exit
+            case 6: {
+                cout << "Exit\n";
+                break;
+            }
+
+        }
+
+    } while (choice != 6);
 
     return 0;
 }
+
+    // print hash first 100 table
+    // print_first_entries(hashTable);
+    //
+    // // find target
+    // string target;
+    // cout << "\nEnter key to search: ";
+    // cin >> target;
+    //
+    // if (search_key(hashTable, target))
+    //     cout << "Found\n";
+    // else
+    //     cout << "Not found\n";
+    //
+    // // Add key
+    // string newKey;
+    //
+    // cout << "\nEnter key to add: ";
+    // cin >> newKey;
+    // add_key(hashTable, newKey);
+    // cout << "Key added\n";
+    //
+    // // remove key
+    // string removeTarget;
+    //
+    // cout << "\nEnter key to remove: ";
+    // cin >> removeTarget;
+    //
+    // if (remove_key(hashTable, removeTarget))
+    //     cout << "Key removed\n";
+    // else
+    //     cout << "Key not found\n";
+    //
+    // // modify key
+    // string oldKey;
+    // string updatedKey;
+    //
+    // cout << "\nEnter key to modify: ";
+    // cin >> oldKey;
+    //
+    // cout << "Enter new key: ";
+    // cin >> updatedKey;
+    //
+    // if (modify_key(hashTable, oldKey, updatedKey))
+    //     cout << "Key modified\n";
+    // else
+    //     cout << "Original key not found\n";
+
+
+//
+//     return 0;
+// }
 
 int get_hash_index(const string& text) {
     int total{};
