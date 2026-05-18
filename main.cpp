@@ -22,6 +22,10 @@ void add_key(map<int, list<string>>& hashTable,
 bool remove_key(map<int, list<string>>& hashTable,
                 const string& target);
 
+bool modify_key(map<int, list<string>>& hashTable,
+                const string& oldKey,
+                const string& newKey);
+
 int main() {
     // open dataset file
     ifstream fileInput{"lab-37-data-3.txt"};
@@ -73,6 +77,15 @@ int main() {
         cout << "Key removed\n";
     else
         cout << "Key not found\n";
+
+    // modify key
+    string oldKey;
+
+    cout << "\nEnter key to modify: ";
+    cin >> oldKey;
+
+    cout << "Enter new key: ";
+
 
     fileInput.close();
 
@@ -141,6 +154,16 @@ bool remove_key(map<int, list<string>>& hashTable,
 
     // remove target from list
     hashTable[hashIndex].remove(target);
+
+    return true;
+}
+
+bool modify_key(map<int, list<string>>& hashTable,
+                const string& oldKey,
+                const string& newKey) {
+
+    if (!search_key(hashTable, oldKey))
+        return false;
 
     return true;
 }
