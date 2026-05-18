@@ -14,6 +14,8 @@ int get_hash_index(const string& text);
 void print_first_entries(const map<int, list<string>>& hashTable);
 bool search_key(const map<int, list<string>>& hashTable,
                 const string& target);
+void add_key(map<int, list<string>>& hashTable,
+             const string& newKey);
 
 int main() {
     // open dataset file
@@ -41,12 +43,19 @@ int main() {
     // find target
     string target;
     cout << "\nEnter key to search: ";
-    getline(cin, target);
+    cin >> target;
 
     if (search_key(hashTable, target))
         cout << "Found\n";
     else
         cout << "Not found\n";
+
+    string newKey;
+
+    cout << "\nEnter key to add: ";
+    cin >> newKey;
+    add_key(hashTable, newKey);
+    cout << "Key added\n";
 
     fileInput.close();
 
@@ -91,4 +100,12 @@ bool search_key(const map<int, list<string>>& hashTable,
             return true;
     }
     return false;
+}
+
+void add_key(map<int, list<string>>& hashTable,
+             const string& newKey) {
+
+    int hashIndex{get_hash_index(newKey)};
+
+    hashTable[hashIndex].push_back(newKey);
 }
