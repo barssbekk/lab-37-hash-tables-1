@@ -43,6 +43,11 @@ int main() {
     cout << "\nEnter key to search: ";
     getline(cin, target);
 
+    if (search_key(hashTable, target))
+        cout << "Found\n";
+    else
+        cout << "Not found\n";
+
     fileInput.close();
 
     return 0;
@@ -77,6 +82,9 @@ void print_first_entries(const map<int, list<string>>& hashTable) {
 bool search_key(const map<int, list<string>>& hashTable,
                 const string& target) {
     int hashIndex{get_hash_index(target)};
+
+    if (hashTable.count(hashIndex) == 0)
+        return false;
 
     for (const auto& each : hashTable.at(hashIndex)) {
         if (each == target)
