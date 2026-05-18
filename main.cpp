@@ -80,12 +80,18 @@ int main() {
 
     // modify key
     string oldKey;
+    string updatedKey;
 
     cout << "\nEnter key to modify: ";
     cin >> oldKey;
 
     cout << "Enter new key: ";
+    cin >> updatedKey;
 
+    if (modify_key(hashTable, oldKey, updatedKey))
+        cout << "Key modified\n";
+    else
+        cout << "Original key not found\n";
 
     fileInput.close();
 
@@ -164,6 +170,9 @@ bool modify_key(map<int, list<string>>& hashTable,
 
     if (!search_key(hashTable, oldKey))
         return false;
+
+    remove_key(hashTable, oldKey);
+    add_key(hashTable, newKey);
 
     return true;
 }
