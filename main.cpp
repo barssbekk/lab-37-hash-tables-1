@@ -12,10 +12,15 @@ const int NUM_FIRST_ENTRIES{100};
 
 int get_hash_index(const string& text);
 void print_first_entries(const map<int, list<string>>& hashTable);
+
 bool search_key(const map<int, list<string>>& hashTable,
                 const string& target);
+
 void add_key(map<int, list<string>>& hashTable,
              const string& newKey);
+
+bool remove_key(map<int, list<string>>& hashTable,
+                const string& target);
 
 int main() {
     // open dataset file
@@ -50,12 +55,22 @@ int main() {
     else
         cout << "Not found\n";
 
+    // Add key
     string newKey;
 
     cout << "\nEnter key to add: ";
     cin >> newKey;
     add_key(hashTable, newKey);
     cout << "Key added\n";
+
+    // remove key
+    string removeTarget;
+
+    cout << "\nEnter key to remove: ";
+    cin >> removeTarget;
+
+    if (remove_key(hashTable, removeTarget))
+        cout << "Key removed\n";
 
     fileInput.close();
 
@@ -108,4 +123,15 @@ void add_key(map<int, list<string>>& hashTable,
     int hashIndex{get_hash_index(newKey)};
 
     hashTable[hashIndex].push_back(newKey);
+}
+
+bool remove_key(map<int, list<string>>& hashTable,
+                const string& target) {
+
+    int hashIndex{get_hash_index(target)};
+
+    // remove target from list
+    hashTable[hashIndex].remove(target);
+
+    return true;
 }
