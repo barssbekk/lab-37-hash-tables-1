@@ -11,6 +11,7 @@ const int BUCKET_RANGE{500};    // total bucket count
 const int NUM_FIRST_ENTRIES{100};
 
 int get_hash_index(const string& text);
+void print_first_entries(const map<int, list<string>>& hashTable);
 
 int main() {
     // open dataset file
@@ -46,6 +47,8 @@ int main() {
         if (counter >= NUM_FIRST_ENTRIES)
             break;
     }
+    cout << "------------\n";
+    print_first_entries(hashTable);
 
     fileInput.close();
 
@@ -61,4 +64,14 @@ int get_hash_index(const string& text) {
     int hashIndex{total % BUCKET_RANGE}; // generate bucket num
 
     return hashIndex;
+}
+
+void print_first_entries(const map<int, list<string>>& hashTable) {
+    int counter{};
+
+    for (const auto& pair : hashTable) {
+        cout << pair.first << ": ";
+        for (const auto& each : pair.second)
+            cout << each << ' ';
+    }
 }
