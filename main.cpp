@@ -33,21 +33,7 @@ int main() {
         hashTable[hashIndex].push_back(inputText);
     }
 
-    int counter{};
-    // print hash table
-    for (const auto& pair : hashTable) {
-        cout << pair.first << ": ";               // print bucket num
-        for (const auto& each : pair.second) {
-            cout << each << ' ';                  // print each txt code
-        }
-        cout << '\n';
-
-        ++counter;
-
-        if (counter >= NUM_FIRST_ENTRIES)
-            break;
-    }
-    cout << "------------\n";
+    // print hash first 100 table
     print_first_entries(hashTable);
 
     fileInput.close();
@@ -73,5 +59,10 @@ void print_first_entries(const map<int, list<string>>& hashTable) {
         cout << pair.first << ": ";
         for (const auto& each : pair.second)
             cout << each << ' ';
+
+        cout << '\n';
+        ++counter;
+        if (counter >= NUM_FIRST_ENTRIES)
+            break;
     }
 }
