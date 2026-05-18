@@ -76,6 +76,11 @@ void print_first_entries(const map<int, list<string>>& hashTable) {
 
 bool search_key(const map<int, list<string>>& hashTable,
                 const string& target) {
+    int hashIndex{get_hash_index(target)};
 
-    return true;
+    for (const auto& each : hashTable.at(hashIndex)) {
+        if (each == target)
+            return true;
+    }
+    return false;
 }
